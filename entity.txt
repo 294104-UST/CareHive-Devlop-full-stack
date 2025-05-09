@@ -1,0 +1,132 @@
+it will be modififed in case needed
+
+AUTH-SERVICE 
+User {
+  _id: ObjectId,
+  name: string,
+  email: string,
+  password: string (hashed),
+  role: 'SUPER_ADMIN' | 'HOSPITAL_ADMIN' | 'DOCTOR' | 'NURSE' | 'LAB_TECHNICIAN' | 'STAFF' | 'PATIENT',
+  hospitalId?: ObjectId, // null for SUPER_ADMIN
+  isActive: boolean
+}
+
+
+HOSPITAL-SERVICE 
+Hospital {
+  _id: ObjectId,
+  name: string,
+  address: string,
+  contact: string,
+  adminUserId: ObjectId, // references User
+}
+
+DEPARTMENT-SERVICE 
+Department {
+  _id: ObjectId,
+  name: string,
+  hospitalId: ObjectId
+}
+
+DOCTOR-SERVICE
+Doctor {
+  _id: ObjectId,
+  userId: ObjectId,      // links to auth User
+  departmentId: ObjectId,
+  hospitalId: ObjectId,
+  available: boolean,
+  leaveDates: Date[],
+}
+
+NURSE-SERVICE
+Nurse {
+  _id: ObjectId,
+  userId: ObjectId,
+  hospitalId: ObjectId,
+  available: boolean,
+  leaveDates: Date[],
+}
+
+LAB-SERVICE
+LabTechnician {
+  _id: ObjectId,
+  userId: ObjectId,
+  hospitalId: ObjectId,
+  available: boolean,
+  leaveDates: Date[],
+}
+
+LabReport {
+  _id: ObjectId,
+  patientId: ObjectId,
+  appointmentId:ObjectId
+  testName: string,
+  resultFileUrl: string,
+  uploadedBy: ObjectId (lab technician),
+  createdAt: Date
+}
+
+CONSULTATION-SERVICE 
+Consultation {
+  _id: ObjectId,
+  patientId: ObjectId,
+  doctorId: ObjectId,
+  nurseId?: ObjectId,
+  appointmentId:ObjectId
+  vitals: {
+    height: string,
+    weight: string,
+    bp: string,
+    temp: string
+  },
+  diagnosis: string,
+  prescription: string[],
+  createdAt: Date
+}
+
+APPOINTMENT-SERVICE
+Appointment {
+  _id: ObjectId,
+  patientId: ObjectId,
+  doctorId: ObjectId,
+  departmentId: ObjectId,
+  hospitalId: ObjectId,
+  appointmentDate: Date,
+  status: 'SCHEDULED' | 'COMPLETED' | 'CANCELLED'
+  createdAt:Date
+}
+
+PATIENT-SERVICE 
+Patient {
+  _id: ObjectId,
+  userId: ObjectId,
+  hospitalId: ObjectId,
+  dateOfBirth: Date,
+  gender: string,
+  bloodGroup: string
+}
+
+BILLING-SERVICE
+Bill {
+  _id: ObjectId,
+  patientId: ObjectId,
+  appointmentId:ObjectId
+  appoint
+  items: [
+    { description: string, cost: number }
+  ],
+  totalAmount: number,
+  generatedBy: ObjectId (STAFF user),
+  createdAt: Date
+}
+
+FEEDBACK-SERVICE
+Feedback {
+  _id: ObjectId,
+  patientId: ObjectId,
+  doctorId: ObjectId,
+  hospitalId: ObjectId,
+  rating: number,
+  comments: string,
+  createdAt: Date
+}

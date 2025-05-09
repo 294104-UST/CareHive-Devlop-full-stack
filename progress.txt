@@ -1,0 +1,2 @@
+status of the project capstone
+completed upto add doctor feature through the hospital admin

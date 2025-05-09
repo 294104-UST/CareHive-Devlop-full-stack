@@ -1,0 +1,43 @@
+The flow of the project is 
+All things need to be authenticated 
+
+PATIENT
+1.will choose hospital, Book an appointment for particular doctor based on the department he/she wants
+2.View his/her previous reports
+3.View preivious consulation records 
+4.Give Feedback
+
+ADMIN(super)
+1.can view all the hospital 
+2.like crud operations in hospital
+3.can view statistics of each hospital
+4.can only create admins for each hospital
+
+ADMIN(for each hospital)
+1.CRUD Operations for doctors and staff
+2.Can view the numberof patients visisted , revenue,i.e statistics of the only particular hospital
+3.View the patient reports, doctors consulatation results and also the lab reports 
+4.should allocate doctors and nurse scheduling
+5.View the feedback
+6.He can manipulate the departments like crud 
+
+DOCTOR
+1.should give avaailability status(leave )
+2.View the working scheduled appointments for a week and also patients assigned 
+3.view patient previous medical history
+4.view all lab reports of the particular patients 
+
+NURSE
+1.should give avaailability status(leave )
+2.View the working scheduled appointments for a week and also patients assigned 
+3.Enters the vitals of the patient and it should get visible in the patient records for the whole consulation session
+4.View the lab reports and the doctor prescription
+5.see all the process done by the patient in a visit and generate a bill
+LAB TECHNISIAN
+1.should give avaailability status(leave )
+2.View the working scheduled appointments for a week and also patients assigned
+3.View the tests needed for the patient , mentioned in the prescription
+4.Upload a file as a result
+
+
+ 
