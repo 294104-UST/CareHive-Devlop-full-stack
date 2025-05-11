@@ -26,7 +26,8 @@ export class DoctorController {
   // Create doctor (already implemented)
   static async createDoctor(req: Request, res: Response): Promise<void> {
     try {
-      const { name, email, departmentId, password } = req.body;
+      //const { name, email, departmentId, password } = req.body;
+      const { name, email, departmentId, password, specialization } = req.body;
       const user = req.user as { id: string; role: string; hospitalId: string };
   
       // Validate required fields
@@ -77,6 +78,7 @@ export class DoctorController {
         departmentId,
         hospitalId: user.hospitalId,
         password: hashedPassword,
+        specialization,
       });
   
       // ✅ Register with auth-service
@@ -89,6 +91,7 @@ export class DoctorController {
             password,
             role: 'DOCTOR',
             hospitalId: user.hospitalId,
+            specialization,
           },
           {
             headers: {

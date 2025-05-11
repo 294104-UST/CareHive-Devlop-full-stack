@@ -93,8 +93,48 @@ app.use(
   createProxyMiddleware({ target: 'http://localhost:3007/api/nurse', changeOrigin: true})
 );
 
+//for consultation service:
+app.use('/api/consultations', (req, res, next) => {
+  console.log(`[API Gateway] Incoming Request to /api/consultations: ${req.method}`);
+  next();
+});
+app.use(
+  '/api/consultations',
+  createProxyMiddleware({ target: 'http://localhost:5006/api/consultations', changeOrigin: true})
+);
 
 
+
+//for lab-service:
+app.use('/api/lab-tests', (req, res, next) => {
+  console.log(`[API Gateway] Incoming Request to /api/lab-tests: ${req.method}`);
+  next();
+});
+app.use(
+  '/api/lab-tests',
+  createProxyMiddleware({ target: 'http://localhost:5008/api/lab-tests', changeOrigin: true})
+);
+
+
+//for labdetails
+app.use('/api/labs', (req, res, next) => {
+  console.log(`[API Gateway] Incoming Request to /api/labs: ${req.method}`);
+  next();
+});
+app.use(
+  '/api/labs',
+  createProxyMiddleware({ target: 'http://localhost:5008/api/labs', changeOrigin: true})
+);
+
+//for billing:
+app.use('/api/billing', (req, res, next) => {
+  console.log(`[API Gateway] Incoming Request to /api/billing: ${req.method}`);
+  next();
+});
+app.use(
+  '/api/billing',
+  createProxyMiddleware({ target: 'http://localhost:5009/api/billing', changeOrigin: true})
+);
 
 
 app.listen(PORT, () => {

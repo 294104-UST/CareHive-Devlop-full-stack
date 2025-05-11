@@ -23,8 +23,8 @@ router.post(
 // Get all appointments
 router.get('/appointments', appointmentController.getAllAppointments);
 
-// Get appointment by ID
-router.get('/appointments/:id',verifyToken,authorizeRoles(['PATIENT']), appointmentController.getAppointmentById);
+// Get appointment by ID,,,,,verifyToken,authorizeRoles(['PATIENT']),
+router.get('/appointments/:id', appointmentController.getAppointmentById);
 
 // Update appointment
 router.put('/appointments/:id', appointmentController.updateAppointment);
